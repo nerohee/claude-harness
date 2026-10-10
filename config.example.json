@@ -1,0 +1,14 @@
+{
+  "language": "ko",
+  "vault": {
+    "path": "",
+    "rawImportDir": "00 Inbox/Raw Import/Personal Study"
+  },
+  "docsDir": "docs",
+  "commitPolicy": "propose-only",
+  "planner": { "model": "opus", "effort": "high" },
+  "builders": {
+    "default": "harness-builder",
+    "deep": "harness-builder-deep"
+  }
+}
