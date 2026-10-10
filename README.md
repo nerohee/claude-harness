@@ -27,7 +27,7 @@
 ## 설치
 
 ```bash
-git clone <이 저장소> ~/project/claude-harness
+git clone https://github.com/nerohee/claude-harness.git ~/project/claude-harness
 bash ~/project/claude-harness/install.sh
 ```
 
@@ -64,3 +64,7 @@ docs/
 ```
 
 저장소를 공개할 때는 `docs/` 를 올릴지 처음에 정합니다. 기본 권장은 코드만 공개입니다.
+
+## 라이선스
+
+MIT — [LICENSE](LICENSE)
