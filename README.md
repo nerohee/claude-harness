@@ -24,6 +24,8 @@
 
 계획 단계에서 작업마다 누가 맡을지 정해 개발 계획에 적습니다.
 
+작업자에게는 가드 hook(`hooks/builder-guard.sh`)이 걸려 있어 git 커밋 · 푸시 · 브랜치 조작, 배포 · 저장소 설정 명령, `.env` 쓰기를 막습니다 (`.env.example` 은 허용). 메인 대화에는 걸리지 않습니다.
+
 ## 설치
 
 ```bash
@@ -37,11 +39,25 @@ bash ~/project/claude-harness/install.sh
 - `~/.claude/agents` 폴더가 처음 생겼다면 Claude Code 를 다시 시작해야 작업자가 보입니다.
 - 지우기: `bash uninstall.sh` (링크와 복사한 에이전트만 지웁니다)
 
+### Windows (Claude 데스크톱 앱 · 네이티브 Claude Code)
+
+WSL 과 Windows 의 Claude Code 는 설정 폴더가 따로입니다 (`~/.claude` ↔ `%USERPROFILE%\.claude`). Windows 에서도 쓰려면 WSL 에 받은 저장소를 그대로 Windows 에 설치합니다.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File \\wsl.localhost\Ubuntu-24.04\home\<사용자>\project\claude-harness\install.ps1
+```
+
+- 개발자 모드가 켜져 있으면 링크로, 아니면 **복사**로 설치합니다. 복사로 설치했으면 저장소를 고친 뒤 다시 돌려야 합니다 — `/harness-setup` 이 달라진 것을 알려 줍니다.
+- 설정(`config.local.json`)은 WSL 과 같은 파일을 씁니다. Vault 경로는 환경에 맞게 바꿔 씁니다 (`/mnt/c/…` ↔ `C:/…`).
+- 작업자 가드 hook 은 bash 로 돌아서 Git Bash 가 있어야 합니다.
+- 지우기: 같은 명령 끝에 `-Uninstall`
+
 ## 구조
 
 ```
 skills/            web-full · web-lite · harness-setup
-agents/            작업자 정의 (install.sh 가 ~/.claude/agents 로 복사)
+agents/            작업자 정의 (install.sh · install.ps1 이 ~/.claude/agents 로 복사)
+hooks/             builder-guard.sh — 작업자 가드 (git · 배포 · .env)
 shared/
   workflow.md          공통 진행 규칙 — 승인 · 실행 · 기록 · git · 공개 저장소
   questions-dev.md     개발 질문 (full / lite)

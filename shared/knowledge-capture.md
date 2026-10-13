@@ -8,6 +8,7 @@ web-lite 에서는 하지 않는다. 설정에 `vault.path` 가 비어 있으면
 
 `<vault.path>/<vault.rawImportDir>/<프로젝트 이름>/<개념 이름>.md`
 
+- `vault.path` 는 설정을 만든 환경 기준이다. 다른 환경에서 돌고 있으면 바꿔 쓴다 — WSL `/mnt/c/Users/…` ↔ Windows `C:/Users/…` (드라이브 글자만 바꾼다). 바꾼 경로에 폴더가 없으면 쓰지 말고 사용자에게 묻는다.
 - 프로젝트 이름은 사이트 이름(예: `my-site.com`). 처음 쓸 때 사용자에게 한 번 확인한다.
 - 개념 이름은 영어 제목으로 (예: `Indexing.md`, `CDN Proxy and DNS Only.md`).
 - 같은 개념 노트가 있으면 **새로 만들지 말고 고친다.**

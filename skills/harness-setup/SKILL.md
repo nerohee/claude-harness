@@ -16,7 +16,12 @@ effort: high
 1. `~/.claude/harness` 가 가리키는 실제 저장소 위치를 확인한다 (`readlink -f ~/.claude/harness`). 이하 "저장소".
 2. 저장소의 `README.md`, `CHANGELOG.md`, `config.example.json`, `config.local.json`(있으면) 을 읽는다.
 3. 설치 상태를 확인한다 — `~/.claude/skills/{web-full,web-lite,harness-setup}` 링크, `~/.claude/agents/harness-builder*.md`.
-   - 빠졌거나 저장소 쪽이 더 새것이면 `bash <저장소>/install.sh` 를 다시 돌리도록 제안한다.
+   - **에이전트 복사본이 저장소와 같은지 비교한다** — 에이전트는 복사 방식이라 저장소만 고치면 예전 것이 계속 쓰인다.
+     ```bash
+     for f in <저장소>/agents/*.md; do cmp -s "$f" ~/.claude/agents/"$(basename "$f")" || echo "다름: $(basename "$f")"; done
+     ```
+   - Windows 에 복사 방식으로 설치했으면(`~/.claude/harness/.install-mode` 가 `copy`) 스킬 · `shared/` 도 같은 식으로 저장소와 비교한다.
+   - 빠졌거나 다르면 무엇이 다른지 보이고, 설치 스크립트를 다시 돌리도록 제안한다 (WSL · Linux · macOS: `bash <저장소>/install.sh`, Windows: `install.ps1` — README "Windows" 절).
 
 ## A. 처음 설정 (config.local.json 이 없거나 비었을 때)
 

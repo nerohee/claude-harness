@@ -44,7 +44,7 @@
 | 단계를 마치면 | 진행 로그 한 줄 | `docs/02-development/dev-plan.md` 끝 |
 | 그날 작업이 끝나면 | 키워드 줄 + 항목별 한 일 · 고객 결정 · 검사 결과 | `docs/03-worklog/YYYY-MM-DD.md` |
 
-틀은 `~/.claude/harness/shared/templates/` 에 있다.
+틀은 `~/.claude/harness/shared/templates/` 에 있다. 틀의 `<…>` 자리는 지금 설정 · 프로젝트 값으로 채우고, 안내 문구를 그대로 남기지 않는다 (예: `dev-plan.md` 작업 규칙의 git 줄은 `commitPolicy` 에 맞는 문장 하나로).
 
 ## 5. git
 
