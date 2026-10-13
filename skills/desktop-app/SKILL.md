@@ -51,7 +51,7 @@ Tauri 2 로 만든다 — 화면은 웹 기술, 시스템 쪽은 Rust. 질문하
 - 요구사항에서 보이는 위험을 먼저 꺼낸다 (`desktop/questions.md` "제작자가 판단해 먼저 꺼낼 것").
 
 ### P0-2. 질문 — 개발
-`desktop/questions.md` + `questions-dev.md` "목적과 사람" · "기능" 중 요구사항에 답이 없는 것만. **누가 쓰나 · 대상 OS 를 첫 묶음 맨 앞에.** 묶음당 5~7개, 선택지는 권장안 먼저.
+`desktop/questions.md` + `questions-dev.md` "목적과 사람" · "기능" 중 요구사항에 답이 없는 것만. **누가 쓰나 · 대상 OS 를 첫 묶음 맨 앞에.** 묻는 형식은 workflow §2 "묻는 형식" — 선택지 A · B · C … + 기타, 권장안을 첫 번째에, 한 묶음 4개까지.
 
 ### P0-3. 질문 — 디자인
 `questions-design.md` §1 (규모에 맞게) — 바뀌는 질문은 `desktop/design.md` §1. 답을 받으면 방향을 한 단락으로 정리해 되묻는다.
