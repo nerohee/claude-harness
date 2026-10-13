@@ -13,7 +13,7 @@
 | `harness-helper` | `helper` | Haiku · low | 문서 정리, 이름 바꾸기, 같은 패턴 반복 수정, 설정 값 옮기기 |
 | `harness-reviewer` | `reviewer` | Opus · high | 읽기 전용 점검 — 마감 점검, 위험한 변경의 두 번째 검토 |
 
-성격 · 원칙 · 보고 형식은 각 에이전트 파일(`~/.claude/agents/harness-*.md`)에 있다. 사람이 읽는 요약은 하네스 README "작업자 프로필".
+성격 · 원칙 · 보고 형식은 각 에이전트 파일(하네스 저장소 `agents/harness-*.md`), 모든 작업자 공통 규칙은 `agents/_common/rules.md` 에 있다. 사람이 읽는 요약은 하네스 README "작업자 프로필". 작업자를 고치거나 늘리는 것은 `/harness-setup` C 절.
 
 ## 담당 정하기
 

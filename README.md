@@ -43,6 +43,13 @@
 
 designer 는 웹 검색 · 브라우저 스크린샷을 기본으로 쓰고, 연결돼 있으면 Figma, 설치돼 있으면 디자인 스킬도 씁니다. 자세한 지시는 `agents/harness-*.md`.
 
+### 작업자 고치기 · 늘리기
+
+`/harness-setup 작업자 …` 로 합니다 (예: `/harness-setup 작업자 designer 성격 바꾸기`). 작업자 하나를 바꾸면 delegation.md · README · 설정까지 같이 바뀌어서, 한 곳에서 체크리스트대로 고칩니다.
+
+- 작업자 파일에는 그 작업자만의 것만 있습니다. 모든 작업자에게 같은 규칙(`agents/_common/rules.md`)과 가드 hook(`agents/_common/hooks.yml`)은 설치할 때 붙습니다.
+- Claude Code 의 `/agents` 나 `~/.claude/agents/` 에서 직접 고치지 마세요 — 다음 설치 때 덮어써집니다. `bash install.sh --check` 로 설치본이 저장소와 같은지 볼 수 있습니다.
+
 작업자에게는 가드 hook(`hooks/builder-guard.sh`)이 걸려 있어 git 커밋 · 푸시 · 브랜치 조작, 배포 · 저장소 설정 명령, 앱 서명 · 릴리스 공개, `.env` · 서명 키 파일 쓰기를 막습니다 (`.env.example` 은 허용). 메인 대화에는 걸리지 않습니다.
 
 ## 설치
@@ -76,7 +83,8 @@ powershell -ExecutionPolicy Bypass -File \\wsl.localhost\Ubuntu-24.04\home\<사�
 
 ```
 skills/            web-full · web-lite · desktop-app · harness-setup
-agents/            작업자 정의 (install.sh · install.ps1 이 ~/.claude/agents 로 복사)
+agents/            작업자 정의 — install.sh · install.ps1 이 공통 규칙과 합쳐 ~/.claude/agents 로 복사
+  _common/           rules.md (공통 규칙) · hooks.yml (가드 hook) · template.md (새 작업자 틀)
 hooks/             builder-guard.sh — 작업자 가드 (git · 배포 · 서명 · .env)
 shared/
   workflow.md          공통 진행 규칙 — 승인 · 실행 · 기록 · git · 공개 저장소
