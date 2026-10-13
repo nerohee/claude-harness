@@ -40,7 +40,8 @@ questions-design §1 전부. 답을 받으면 방향을 한 단락으로 정리�
 
 ### P0-4. 문서 골격과 질의 기록
 승인을 받고 `docs/` 를 만든다 (틀: `~/.claude/harness/shared/templates/`).
-- `docs/README.md`, `01-planning/plan.md`, `01-planning/decisions.md`, `02-development/dev-plan.md`, `03-worklog/`, `04-communication/`
+- `docs/README.md`, `01-planning/plan.md`, `01-planning/decisions.md`, `02-development/dev-plan.md` · `handoff.md` · `briefs/`, `03-worklog/`, `04-communication/`
+- 프로젝트 루트 `CLAUDE.md` 에 이어 하기 안내를 넣을지 묻는다 (workflow §4 "이어 하기 준비").
 - 지금까지의 질의응답을 `04-communication/YYYY-MM-DD-requirements-clarification.md` 로.
 - 저장소를 공개한다고 했고 `docs/` 는 비공개로 하기로 했으면, `.gitignore` 에 `/docs/` 를 넣고 비공개 백업 방법을 제안한다.
 
@@ -57,7 +58,7 @@ questions-design §1 전부. 답을 받으면 방향을 한 단락으로 정리�
 1. 다음 단계를 workflow §2 의 네 가지로 소개 → 승인.
 2. delegation.md 에 따라 작업 지시서를 써서 맡긴다 → 직접 검수. 화면은 `designer` → 사용자 선택 → `ui` → `designer` 디자인 검수 순서.
 3. 화면 작업이면 개발 서버 확인을 요청 → 의견 반영 → 괜찮다고 하면 전체 시험.
-4. 진행 로그 · 작업 일지 · 결정 기록을 갱신한다.
+4. 진행 로그 · 작업 일지 · 결정 기록 · `handoff.md` 를 갱신한다 (workflow §4).
 5. 커밋 메시지를 제안한다 (저장소 이름과 함께).
 6. 그사이 설명한 개념은 knowledge-capture 에 따라 노트로 남긴다.
 

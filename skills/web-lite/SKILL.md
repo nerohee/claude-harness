@@ -31,11 +31,13 @@ effort: high
    - `docs/README.md`
    - `docs/01-planning/plan.md` — 결정은 이 안의 "결정" 절에 (decisions.md 는 만들지 않는다)
    - `docs/02-development/dev-plan.md` — 단계는 보통 2~4개
+   - `docs/02-development/handoff.md` · `briefs/` (이어 하기 메모 · 작업 지시서)
    - `docs/03-worklog/`, `docs/04-communication/` (질의 기록)
+   - 프로젝트 루트 `CLAUDE.md` 에 이어 하기 안내를 넣을지 묻는다 (workflow §4 "이어 하기 준비").
 4. 기획을 짧게 요약해 승인을 받는다. **승인 전에는 코드를 쓰지 않는다.**
 
 ### P1~. 단계 실행
-web-full 과 같다 — 소개 → 승인 → 맡기기 · 검수 → 개발 서버 확인 → 시험 → 기록 → 커밋 메시지 제안.
+web-full 과 같다 — 소개 → 승인 → 맡기기 · 검수 → 개발 서버 확인 → 시험 → 기록(`handoff.md` 포함) → 커밋 메시지 제안.
 
 - 첫 화면 시안은 **2개까지.** 요구사항에 디자인이 분명하면 시안 없이 바로.
 - 작업자는 대부분 `ui` 로 충분하다. 시안이 필요하면 `designer`(2개까지), 결제 · 외부 연동은 `system`, 단순 정리는 `helper`.

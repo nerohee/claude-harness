@@ -12,6 +12,7 @@
 | `/web-full <요구사항.md>` | 제대로 된 웹사이트 | 개발 + 디자인, 깊게 | 남김 |
 | `/web-lite <요구사항.md>` | 핵심 기능 하나 · 랜딩 페이지 | 꼭 필요한 것만 | 남기지 않음 |
 | `/desktop-app <요구사항.md>` | 데스크톱 앱 (Tauri 2) — 규모는 요구사항에 맞춰 | 요구사항에 맞게 | 남김 |
+| `/harness-resume [프로젝트 폴더]` | 끊긴 작업 이어 하기 (토큰 · 사용량 한도, 새 세션) | - | - |
 | `/harness-setup [바꿀 것]` | 하네스 자체 설정 · 수정 | 원하는 변경 | - |
 
 개발 스킬은 모두 같은 방식으로 진행합니다 — 승인 게이트, 실행 확인(웹은 개발 서버, 앱은 개발 실행) 뒤 시험, 작업 일지 · 개발 계획 · 질의 기록, 커밋 메시지 제안.
@@ -52,6 +53,16 @@ designer 는 웹 검색 · 브라우저 스크린샷을 기본으로 쓰고, 연
 
 작업자에게는 가드 hook(`hooks/builder-guard.sh`)이 걸려 있어 git 커밋 · 푸시 · 브랜치 조작, 배포 · 저장소 설정 명령, 앱 서명 · 릴리스 공개, `.env` · 서명 키 파일 쓰기를 막습니다 (`.env.example` 은 허용). 메인 대화에는 걸리지 않습니다.
 
+## 끊겼을 때 이어 하기
+
+토큰이나 사용량 한도로 작업이 멈춰도, 진행 상태가 대화가 아니라 파일에 남아 있어 그대로 이어 갑니다.
+
+- `docs/02-development/handoff.md` — 이어 하기 메모. 메인이 작업을 **맡기기 직전**, 돌아온 직후, 사용자 답을 기다릴 때, 단계가 끝날 때 갱신합니다.
+- `docs/02-development/briefs/` — 작업 지시서 파일. 작업자가 항목을 끝낼 때마다 `[x]` 로 표시해서, 일하던 중에 끊겨도 어디까지 했는지 남습니다.
+- 새 세션에서 `/harness-resume` → 어느 스킬의 어느 단계였는지, 작업자가 어디까지 했는지 확인하고 다음 할 일을 보고합니다.
+- 프로젝트 `CLAUDE.md` 에 안내 두 줄을 넣어 두면(처음에 묻습니다) "이어서 하자" 만으로도 이어집니다.
+- 단계가 끝날 때마다 새 세션으로 시작해도 됩니다 — 잃는 것이 없고 토큰을 덜 씁니다.
+
 ## 설치
 
 ```bash
@@ -84,7 +95,7 @@ powershell -ExecutionPolicy Bypass -File \\wsl.localhost\Ubuntu-24.04\home\<사�
 ## 구조
 
 ```
-skills/            web-full · web-lite · desktop-app · harness-setup
+skills/            web-full · web-lite · desktop-app · harness-resume · harness-setup
 agents/            작업자 정의 — install.sh · install.ps1 이 공통 규칙과 합쳐 ~/.claude/agents 로 복사
   _common/           rules.md (공통 규칙) · hooks.yml (가드 hook) · template.md (새 작업자 틀)
 hooks/             builder-guard.sh — 작업자 가드 (git · 배포 · 서명 · .env)
@@ -105,7 +116,7 @@ config.example.json  개인 설정 예시
 docs/
   README.md
   01-planning/     plan.md · decisions.md · design-references.md (레퍼런스 보드) · design/ (시안 스크린샷)
-  02-development/  dev-plan.md (단계 · 담당 · 진행 로그) · release.md (앱 출시)
+  02-development/  dev-plan.md (단계 · 담당 · 진행 로그) · handoff.md (이어 하기 메모) · briefs/ (작업 지시서) · release.md (앱 출시)
   03-worklog/      YYYY-MM-DD.md
   04-communication/ 질의응답 · 검수 기록
 ```

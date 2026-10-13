@@ -61,7 +61,8 @@ Tauri 2 로 만든다 — 화면은 웹 기술, 시스템 쪽은 Rust. 질문하
 
 ### P0-5. 문서 골격과 질의 기록
 승인을 받고 `docs/` 를 만든다 (틀: `~/.claude/harness/shared/templates/`).
-- `docs/README.md`, `01-planning/plan.md`, `02-development/dev-plan.md`, `03-worklog/`, `04-communication/`
+- `docs/README.md`, `01-planning/plan.md`, `02-development/dev-plan.md` · `handoff.md` · `briefs/`, `03-worklog/`, `04-communication/`
+- 프로젝트 루트 `CLAUDE.md` 에 이어 하기 안내를 넣을지 묻는다 (workflow §4 "이어 하기 준비").
 - 큰 쪽이면 `01-planning/decisions.md`, 배포하는 앱이면 `02-development/release.md` 도.
 - 지금까지의 질의응답을 `04-communication/YYYY-MM-DD-requirements-clarification.md` 로.
 - 저장소를 공개한다고 했고 `docs/` 는 비공개로 하기로 했으면, `.gitignore` 에 `/docs/` 를 넣고 비공개 백업 방법을 제안한다.
@@ -82,7 +83,7 @@ Tauri 2 로 만든다 — 화면은 웹 기술, 시스템 쪽은 Rust. 질문하
 1. 다음 단계를 workflow §2 의 네 가지로 소개 → 승인. **권한(capabilities)을 새로 여는 단계면 무엇을 왜 여는지 함께 보인다.**
 2. delegation.md 에 따라 작업 지시서를 써서 맡긴다 → 직접 검수 (권한 · 시스템 호출 변경은 `desktop/stack.md` "권한과 보안" 기준으로 따로 본다). 화면은 `designer` → 사용자 선택 → `ui` → `designer` 디자인 검수 순서, 앱 권한 · 업데이트를 바꾼 단계 뒤에는 `reviewer`.
 3. 화면 · 동작이 바뀌는 작업이면 실행 확인을 요청한다 — 띄우는 명령(`npm run tauri dev`), 볼 것 → 의견 반영 → 괜찮다고 하면 전체 시험 (`desktop/testing.md`).
-4. 진행 로그 · 작업 일지 · 결정 기록을 갱신한다.
+4. 진행 로그 · 작업 일지 · 결정 기록 · `handoff.md` 를 갱신한다 (workflow §4).
 5. 커밋 메시지를 제안한다 (저장소 이름과 함께).
 6. 그사이 설명한 개념은 knowledge-capture 에 따라 노트로 남긴다.
 

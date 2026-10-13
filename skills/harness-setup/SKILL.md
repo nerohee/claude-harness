@@ -1,6 +1,6 @@
 ---
 name: harness-setup
-description: claude-harness(web-full · web-lite · desktop-app 과 작업자 에이전트) 자체를 설정하거나 고친다 — 처음 설치한 PC 의 개인 설정 만들기, 질문 · 규칙 · 템플릿 바꾸기, 작업자 고치기 · 추가 · 빼기. 사용자가 /harness-setup 으로 부를 때만 쓴다.
+description: claude-harness(web-full · web-lite · desktop-app · harness-resume 과 작업자 에이전트) 자체를 설정하거나 고친다 — 처음 설치한 PC 의 개인 설정 만들기, 질문 · 규칙 · 템플릿 바꾸기, 작업자 고치기 · 추가 · 빼기. 사용자가 /harness-setup 으로 부를 때만 쓴다.
 argument-hint: "[바꾸고 싶은 것 (비우면 현재 설정을 보여 주고 묻는다)]"
 disable-model-invocation: true
 model: opus
@@ -15,7 +15,7 @@ effort: high
 
 1. `~/.claude/harness` 가 가리키는 실제 저장소 위치를 확인한다 (`readlink -f ~/.claude/harness` — macOS 12.3 보다 오래돼 안 되면 `cd ~/.claude/harness && pwd -P`). 이하 "저장소".
 2. 저장소의 `README.md`, `CHANGELOG.md`, `config.example.json`, `config.local.json`(있으면) 을 읽는다.
-3. 설치 상태를 확인한다 — `~/.claude/skills/{web-full,web-lite,desktop-app,harness-setup}` 링크, `~/.claude/agents/harness-*.md` (designer · builder-ui · builder-system · tester · helper · reviewer).
+3. 설치 상태를 확인한다 — `~/.claude/skills/{web-full,web-lite,desktop-app,harness-resume,harness-setup}` 링크, `~/.claude/agents/harness-*.md` (designer · builder-ui · builder-system · tester · helper · reviewer).
    - **설치된 작업자가 저장소와 같은지 비교한다** — 작업자는 공통 규칙과 합쳐 복사하는 방식이라 저장소만 고치면 예전 것이 계속 쓰인다.
      ```bash
      bash <저장소>/install.sh --check      # Windows: install.ps1 -Check
@@ -44,6 +44,7 @@ effort: high
    | 바꾸고 싶은 것 | 파일 |
    |---|---|
    | 진행 방식 · 승인 · 기록 · git 규칙 | `shared/workflow.md` |
+   | 끊겼다 이어 하기 | `shared/workflow.md` §4 · §8, `shared/templates/handoff.md` · `brief.md`, `skills/harness-resume/SKILL.md` |
    | 개발 질문 | `shared/questions-dev.md` |
    | 디자인 질문 · 디자인 원칙 | `shared/questions-design.md` |
    | 맡기기 · 검수 방식 | `shared/delegation.md` |
