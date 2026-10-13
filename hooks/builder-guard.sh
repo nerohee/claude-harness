@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # 작업자 에이전트(harness-*) 전용 PreToolUse 가드 — 에이전트 앞머리 hooks 에서 부른다.
 # 막는 것: git 커밋 · 푸시 · 이력 · 브랜치 조작, 배포 · 공개 설정 명령, 앱 서명 · 릴리스, .env · 서명 키 파일 만들기 · 고치기 (.env.example 같은 예시 파일은 허용).
-# 막으면 exit 2 + stderr — 작업자는 이유를 보고 멈춰서 보고한다. jq 없이 bash · grep · sed 만 쓴다 (Windows Git Bash 에서도 돈다).
+# 막으면 exit 2 + stderr — 작업자는 이유를 보고 멈춰서 보고한다. jq 없이 bash · grep · sed 만 쓴다 (macOS 기본 bash 3.2 · BSD 도구, Windows Git Bash 에서도 돈다).
 
 INPUT="$(cat)"
 
-field() {  # field <이름> — 한 줄 JSON 에서 문자열 필드 값을 꺼낸다 (이스케이프는 그대로)
-  printf '%s' "$INPUT" | sed -n 's/.*"'"$1"'"[[:space:]]*:[[:space:]]*"\(\([^"\\]\|\\.\)*\)".*/\1/p' | head -n 1
+field() {  # field <이름> — 한 줄 JSON 에서 문자열 필드 값을 꺼낸다 (이스케이프는 그대로). sed -E 만 써서 GNU · BSD(macOS) 모두 돈다
+  printf '%s' "$INPUT" | sed -nE 's/.*"'"$1"'"[[:space:]]*:[[:space:]]*"(([^"\\]|\\.)*)".*/\1/p' | head -n 1
 }
 
 block() {

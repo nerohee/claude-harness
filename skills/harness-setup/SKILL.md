@@ -13,7 +13,7 @@ effort: high
 
 ## 먼저 파악하기
 
-1. `~/.claude/harness` 가 가리키는 실제 저장소 위치를 확인한다 (`readlink -f ~/.claude/harness`). 이하 "저장소".
+1. `~/.claude/harness` 가 가리키는 실제 저장소 위치를 확인한다 (`readlink -f ~/.claude/harness` — macOS 12.3 보다 오래돼 안 되면 `cd ~/.claude/harness && pwd -P`). 이하 "저장소".
 2. 저장소의 `README.md`, `CHANGELOG.md`, `config.example.json`, `config.local.json`(있으면) 을 읽는다.
 3. 설치 상태를 확인한다 — `~/.claude/skills/{web-full,web-lite,desktop-app,harness-setup}` 링크, `~/.claude/agents/harness-*.md` (designer · builder-ui · builder-system · tester · helper · reviewer).
    - **설치된 작업자가 저장소와 같은지 비교한다** — 작업자는 공통 규칙과 합쳐 복사하는 방식이라 저장소만 고치면 예전 것이 계속 쓰인다.

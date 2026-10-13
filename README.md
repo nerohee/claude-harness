@@ -59,6 +59,8 @@ git clone https://github.com/nerohee/claude-harness.git ~/project/claude-harness
 bash ~/project/claude-harness/install.sh
 ```
 
+Linux · WSL · macOS 모두 같은 명령입니다 (macOS 기본 bash 로 됩니다).
+
 그다음 Claude Code 에서 `/harness-setup` 으로 개인 설정(대답 언어, Vault 경로 등)을 만듭니다. 설정은 `config.local.json` 에 저장되고 git 에 올라가지 않습니다.
 
 - 세션 모델은 **Opus · 추론 high** 로 두고 쓰세요 (`/model`). 스킬이 시작할 때 확인합니다.

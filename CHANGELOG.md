@@ -1,6 +1,7 @@
 # 변경 기록
 
 ## 2026-10-13
+- macOS — 가드 hook 의 필드 꺼내기를 `sed -E` 로 (GNU 전용 `\|` 때문에 BSD sed 에서 도구 이름을 못 꺼내 전부 통과될 수 있었음), `harness-setup` 에 `readlink -f` 대신 쓸 길, README 에 macOS 설치
 - 작업자 공통 규칙 · 가드 hook 을 `agents/_common/`(rules.md · hooks.yml)으로 빼고, 설치 스크립트가 합쳐서 설치 — 작업자 파일에는 그 작업자만의 것만. 새 작업자 틀 `template.md`. `install.sh --check` · `install.ps1 -Check` 로 설치본 비교, 틀이 틀린 작업자 파일은 설치 중단
 - `harness-setup` C 절 — 작업자 고치기 · 추가 · 빼기 체크리스트, 일관성 검사, 시험 호출
 - 공통 규칙 — 확인 명령은 반드시 실제로 돌리고 출력을 적는다 (시험 호출에서 helper 가 짐작으로 보고한 것을 보고 더함)
