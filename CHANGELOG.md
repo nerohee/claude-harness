@@ -1,6 +1,7 @@
 # 변경 기록
 
 ## 2026-10-13
+- 요구사항이 없을 때 — 스킬을 경로 없이 부르면 대화로 받아 적기 / 틀 만들어 주기 / 경로 알려 주기 (workflow §0-5), 가벼운 틀 `templates/requirements.md`. 요구사항은 자유 형식이 기본
 - 끊겼다 이어 하기 — 새 스킬 `/harness-resume`, 이어 하기 메모 `handoff.md` · 작업 지시서 파일 `briefs/` 틀. 맡기기 직전 · 돌아온 직후에 기록(workflow §4 · §8), 작업자는 지시서 항목을 끝낼 때마다 `[x]`, 지시서는 한 번에 끝낼 크기로, 단계 끝 새 세션 안내, 프로젝트 `CLAUDE.md` 이어 하기 안내(P0 에서 물음)
 - macOS — 가드 hook 의 필드 꺼내기를 `sed -E` 로 (GNU 전용 `\|` 때문에 BSD sed 에서 도구 이름을 못 꺼내 전부 통과될 수 있었음), `harness-setup` 에 `readlink -f` 대신 쓸 길, README 에 macOS 설치
 - 작업자 공통 규칙 · 가드 hook 을 `agents/_common/`(rules.md · hooks.yml)으로 빼고, 설치 스크립트가 합쳐서 설치 — 작업자 파일에는 그 작업자만의 것만. 새 작업자 틀 `template.md`. `install.sh --check` · `install.ps1 -Check` 로 설치본 비교, 틀이 틀린 작업자 파일은 설치 중단

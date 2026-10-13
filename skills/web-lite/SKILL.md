@@ -20,6 +20,8 @@ effort: high
 3. `~/.claude/harness/shared/questions-dev.md` 의 `lite` 질문, `questions-design.md` 의 ★ 질문
 4. `~/.claude/harness/shared/delegation.md`
 
+요구사항 경로가 비었으면 workflow §0-5 (대화로 받아 적기 / 틀 만들어 주기 / 경로 알려 주기). 이미 진행 중인 프로젝트면 workflow §0-4 를 따른다.
+
 **하지 않는 것** — `knowledge-capture.md` 의 개념 노트. 사용자가 개념을 물으면 답만 하고 Vault 에는 남기지 않는다.
 
 ## 진행

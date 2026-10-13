@@ -23,7 +23,7 @@ effort: high
 4. `~/.claude/harness/shared/delegation.md`
 5. `~/.claude/harness/shared/knowledge-capture.md`
 
-요구사항 경로가 비었으면 사용자에게 묻는다. 이미 진행 중인 프로젝트면 workflow §0-4 를 따른다.
+요구사항 경로가 비었으면 workflow §0-5 (대화로 받아 적기 / 틀 만들어 주기 / 경로 알려 주기). 이미 진행 중인 프로젝트면 workflow §0-4 를 따른다.
 
 ## 진행
 
