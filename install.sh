@@ -8,6 +8,7 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLAUDE_DIR="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
+RETIRED="harness-builder harness-builder-deep"
 new_agents_dir=0
 [ -d "$CLAUDE_DIR/agents" ] || new_agents_dir=1
 mkdir -p "$CLAUDE_DIR/skills" "$CLAUDE_DIR/agents"
@@ -24,6 +25,9 @@ link "$REPO" "$CLAUDE_DIR/harness"
 for d in "$REPO"/skills/*/; do
   name="$(basename "$d")"
   link "${d%/}" "$CLAUDE_DIR/skills/$name"
+done
+for f in $RETIRED; do  # 이름이 바뀌어 저장소에서 빠진 예전 작업자
+  t="$CLAUDE_DIR/agents/$f.md"; [ -f "$t" ] && rm "$t" && echo "  지움 (예전 작업자): $t"
 done
 for f in "$REPO"/agents/*.md; do
   cp "$f" "$CLAUDE_DIR/agents/"; echo "  복사: $CLAUDE_DIR/agents/$(basename "$f")"

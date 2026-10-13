@@ -6,9 +6,16 @@
   },
   "docsDir": "docs",
   "commitPolicy": "propose-only",
-  "planner": { "model": "opus", "effort": "high" },
-  "builders": {
-    "default": "harness-builder",
-    "deep": "harness-builder-deep"
+  "planner": {
+    "model": "opus",
+    "effort": "high"
+  },
+  "agents": {
+    "designer": "harness-designer",
+    "ui": "harness-builder-ui",
+    "system": "harness-builder-system",
+    "tester": "harness-tester",
+    "helper": "harness-helper",
+    "reviewer": "harness-reviewer"
   }
 }

@@ -11,9 +11,9 @@
 | 단계 | 내용 | 담당 | 승인 게이트 | 상태 |
 |---|---|---|---|---|
 | P0 | 셋업 · 기획 확정 | 직접 | 기획 승인 | |
-| P1 | | builder | | |
+| P1 | | ui | | |
 
-담당: `builder` = Sonnet · medium, `deep` = Sonnet · high, `직접` = 메인(Opus)
+담당: `designer` = 디자인 (Opus · high), `ui` = 화면 (Sonnet · medium), `system` = 시스템 (Sonnet · high), `tester` = 시험 (Sonnet · medium), `helper` = 정리 (Haiku · low), `reviewer` = 점검 (Opus · high, 읽기 전용), `직접` = 메인(Opus)
 
 ## P1. <단계 이름>
 - 목표:

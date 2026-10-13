@@ -1,6 +1,8 @@
 # 변경 기록
 
 ## 2026-10-13
+- 작업자 6종으로 재편 — `harness-designer`(Opus · high, 레퍼런스 · 시안 · 디자인 검수) · `harness-builder-ui` · `harness-builder-system` · `harness-tester` · `harness-helper`(Haiku) · `harness-reviewer`(Opus · 읽기 전용). `harness-builder` · `harness-builder-deep` 은 없앰 (설치 스크립트가 예전 복사본을 지움, 예전 담당 표기 `builder` · `deep` 은 delegation.md 규칙으로 읽음)
+- delegation.md — 담당 정하기 · 작업자별 지시서 · 검수 항목, README "작업자 프로필", 화면 흐름 designer → ui → designer, 마감 점검은 reviewer
 - 새 스킬 `desktop-app` — Tauri 2 데스크톱 앱. 규모를 나누지 않고 요구사항에 맞춰 질문 · 문서 · 시험을 조절. `shared/desktop/`(질문 · 기술 · 디자인 · 시험), 출시 기록 틀 `templates/release.md`
 - 공통 문서 · 문서 틀의 "개발 서버 확인" → "실행 확인"(웹 · 앱), workflow §6 에 서명 키 · 앱 안 비밀값 규칙
 - 작업자 가드 hook — 앱 서명 · 공증 · 릴리스 올리기 · `gh workflow run` · `cargo publish`, 서명 키 · 인증서 파일 쓰기도 막음. 작업자 설명에 데스크톱 규칙

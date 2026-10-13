@@ -3,6 +3,7 @@
 set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLAUDE_DIR="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
+RETIRED="harness-builder harness-builder-deep"
 for d in "$REPO"/skills/*/; do
   t="$CLAUDE_DIR/skills/$(basename "$d")"
   [ -L "$t" ] && rm "$t" && echo "  지움: $t"
@@ -10,6 +11,9 @@ done
 for f in "$REPO"/agents/*.md; do
   t="$CLAUDE_DIR/agents/$(basename "$f")"
   [ -f "$t" ] && rm "$t" && echo "  지움: $t"
+done
+for f in $RETIRED; do
+  t="$CLAUDE_DIR/agents/$f.md"; [ -f "$t" ] && rm "$t" && echo "  지움: $t"
 done
 [ -L "$CLAUDE_DIR/harness" ] && rm "$CLAUDE_DIR/harness" && echo "  지움: $CLAUDE_DIR/harness"
 echo "완료."

@@ -15,6 +15,14 @@ $ClaudeDir = if ($env:CLAUDE_CONFIG_DIR) { $env:CLAUDE_CONFIG_DIR } else { Join-
 $Marker = '.install-mode'
 $Skills = Get-ChildItem -Directory (Join-Path $Repo 'skills')
 $Agents = Get-ChildItem -File (Join-Path $Repo 'agents') -Filter '*.md'
+$Retired = @('harness-builder', 'harness-builder-deep')  # 이름이 바뀌어 저장소에서 빠진 예전 작업자
+
+function Remove-Retired {
+  foreach ($r in $Retired) {
+    $t = Join-Path $ClaudeDir "agents\$r.md"
+    if (Test-Path -LiteralPath $t) { Remove-Item -LiteralPath $t -Force; Write-Host "  지움 (예전 작업자): $t" }
+  }
+}
 
 function Test-Link($p) { (Test-Path -LiteralPath $p) -and ((Get-Item -LiteralPath $p -Force).Attributes -band [IO.FileAttributes]::ReparsePoint) }
 function Test-OurCopy($p) { Test-Path -LiteralPath (Join-Path $p $Marker) }
@@ -45,6 +53,7 @@ if ($Uninstall) {
     $t = Join-Path $ClaudeDir "agents\$($a.Name)"
     if (Test-Path -LiteralPath $t) { Remove-Item -LiteralPath $t -Force; Write-Host "  지움: $t" }
   }
+  Remove-Retired
   [void](Remove-Ours (Join-Path $ClaudeDir 'harness'))
   Write-Host '완료.'; return
 }
@@ -59,6 +68,7 @@ if (-not (Test-Path -LiteralPath (Join-Path $Repo 'config.local.json'))) {
 }
 $mode = Install-Dir $Repo (Join-Path $ClaudeDir 'harness') @('.git')
 foreach ($s in $Skills) { [void](Install-Dir $s.FullName (Join-Path $ClaudeDir "skills\$($s.Name)")) }
+Remove-Retired
 foreach ($a in $Agents) {
   Copy-Item -LiteralPath $a.FullName -Destination (Join-Path $ClaudeDir 'agents') -Force
   Write-Host "  복사: $ClaudeDir\agents\$($a.Name)"

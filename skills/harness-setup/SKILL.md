@@ -15,7 +15,7 @@ effort: high
 
 1. `~/.claude/harness` 가 가리키는 실제 저장소 위치를 확인한다 (`readlink -f ~/.claude/harness`). 이하 "저장소".
 2. 저장소의 `README.md`, `CHANGELOG.md`, `config.example.json`, `config.local.json`(있으면) 을 읽는다.
-3. 설치 상태를 확인한다 — `~/.claude/skills/{web-full,web-lite,desktop-app,harness-setup}` 링크, `~/.claude/agents/harness-builder*.md`.
+3. 설치 상태를 확인한다 — `~/.claude/skills/{web-full,web-lite,desktop-app,harness-setup}` 링크, `~/.claude/agents/harness-*.md` (designer · builder-ui · builder-system · tester · helper · reviewer).
    - **에이전트 복사본이 저장소와 같은지 비교한다** — 에이전트는 복사 방식이라 저장소만 고치면 예전 것이 계속 쓰인다.
      ```bash
      for f in <저장소>/agents/*.md; do cmp -s "$f" ~/.claude/agents/"$(basename "$f")" || echo "다름: $(basename "$f")"; done
@@ -51,7 +51,8 @@ effort: high
    | 데스크톱 앱 — 질문 · 기술(Tauri) · 디자인 · 시험 | `shared/desktop/*.md` |
    | 문서 틀 | `shared/templates/*.md` |
    | 스킬별 단계 | `skills/<이름>/SKILL.md` |
-   | 작업자 모델 · 추론 수준 · 역할 | `agents/harness-builder*.md` 앞머리(`model`, `effort`) |
+   | 작업자 모델 · 추론 수준 · 역할 · 성격 | `agents/harness-*.md` 앞머리(`model`, `effort`) · 본문 + README "작업자 프로필" + `shared/delegation.md` 표 |
+   | 작업자 추가 · 빼기 | `agents/` + `shared/delegation.md` + README + `config.example.json` `agents` · 뺀 이름은 `install.sh` · `install.ps1` · `uninstall.sh` 의 `RETIRED` 목록에 |
    | 계획 담당 모델 | `config` 의 `planner` + 각 SKILL.md 앞머리 `model` · `effort` |
    | 새 스킬 추가 | `skills/<새 이름>/SKILL.md` + README 표 |
 
@@ -64,6 +65,7 @@ effort: high
 
 ## 작업자 모델 · 수준을 바꿀 때 판단 기준
 
-- 계획이 구체적인 구현이 대부분이면 `harness-builder` = `sonnet` · `medium` 이 속도와 비용의 균형이 좋다.
-- 검수에서 같은 실수가 반복되면 그 종류의 작업을 `deep`(`high`)으로 옮기거나, 지시서 항목을 늘린다 — 모델부터 올리지 않는다.
+- 계획이 구체적인 구현은 `sonnet` · `medium`(ui · tester), 틀리면 비용이 큰 일은 `sonnet` · `high`(system), 판단 없는 반복은 `haiku`(helper)가 속도와 비용의 균형이 좋다.
+- 취향 · 판단의 질이 결과를 정하는 일(designer · reviewer)만 `opus`. 비싸니 부르는 시점을 좁힌다.
+- 검수에서 같은 실수가 반복되면 먼저 그 작업자 파일의 체크리스트나 지시서 항목을 늘린다. 그래도 안 되면 그 종류의 작업을 더 높은 작업자로 옮긴다 — 모델부터 올리지 않는다.
 - `effort` 값: `low` · `medium` · `high` · `xhigh` · `max`. `model` 값: `sonnet` · `opus` · `haiku` · `inherit` 또는 전체 모델 ID.
