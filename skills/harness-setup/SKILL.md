@@ -1,6 +1,6 @@
 ---
 name: harness-setup
-description: claude-harness(web-full · web-lite 와 작업자 에이전트) 자체를 설정하거나 고친다 — 처음 설치한 PC 의 개인 설정 만들기, 질문 · 규칙 · 템플릿 · 작업자 모델과 추론 수준 바꾸기. 사용자가 /harness-setup 으로 부를 때만 쓴다.
+description: claude-harness(web-full · web-lite · desktop-app 과 작업자 에이전트) 자체를 설정하거나 고친다 — 처음 설치한 PC 의 개인 설정 만들기, 질문 · 규칙 · 템플릿 · 작업자 모델과 추론 수준 바꾸기. 사용자가 /harness-setup 으로 부를 때만 쓴다.
 argument-hint: "[바꾸고 싶은 것 (비우면 현재 설정을 보여 주고 묻는다)]"
 disable-model-invocation: true
 model: opus
@@ -15,7 +15,7 @@ effort: high
 
 1. `~/.claude/harness` 가 가리키는 실제 저장소 위치를 확인한다 (`readlink -f ~/.claude/harness`). 이하 "저장소".
 2. 저장소의 `README.md`, `CHANGELOG.md`, `config.example.json`, `config.local.json`(있으면) 을 읽는다.
-3. 설치 상태를 확인한다 — `~/.claude/skills/{web-full,web-lite,harness-setup}` 링크, `~/.claude/agents/harness-builder*.md`.
+3. 설치 상태를 확인한다 — `~/.claude/skills/{web-full,web-lite,desktop-app,harness-setup}` 링크, `~/.claude/agents/harness-builder*.md`.
    - **에이전트 복사본이 저장소와 같은지 비교한다** — 에이전트는 복사 방식이라 저장소만 고치면 예전 것이 계속 쓰인다.
      ```bash
      for f in <저장소>/agents/*.md; do cmp -s "$f" ~/.claude/agents/"$(basename "$f")" || echo "다름: $(basename "$f")"; done
@@ -48,6 +48,7 @@ effort: high
    | 디자인 질문 · 디자인 원칙 | `shared/questions-design.md` |
    | 맡기기 · 검수 방식 | `shared/delegation.md` |
    | 개념 노트 | `shared/knowledge-capture.md` |
+   | 데스크톱 앱 — 질문 · 기술(Tauri) · 디자인 · 시험 | `shared/desktop/*.md` |
    | 문서 틀 | `shared/templates/*.md` |
    | 스킬별 단계 | `skills/<이름>/SKILL.md` |
    | 작업자 모델 · 추론 수준 · 역할 | `agents/harness-builder*.md` 앞머리(`model`, `effort`) |

@@ -1,6 +1,9 @@
 # 변경 기록
 
 ## 2026-10-13
+- 새 스킬 `desktop-app` — Tauri 2 데스크톱 앱. 규모를 나누지 않고 요구사항에 맞춰 질문 · 문서 · 시험을 조절. `shared/desktop/`(질문 · 기술 · 디자인 · 시험), 출시 기록 틀 `templates/release.md`
+- 공통 문서 · 문서 틀의 "개발 서버 확인" → "실행 확인"(웹 · 앱), workflow §6 에 서명 키 · 앱 안 비밀값 규칙
+- 작업자 가드 hook — 앱 서명 · 공증 · 릴리스 올리기 · `gh workflow run` · `cargo publish`, 서명 키 · 인증서 파일 쓰기도 막음. 작업자 설명에 데스크톱 규칙
 - 작업자 가드 hook `hooks/builder-guard.sh` — 두 작업자 앞머리 `hooks` 로 연결해 git 커밋 · 푸시 · 브랜치 조작, 배포 · 저장소 설정, `.env` 쓰기를 막음
 - Windows 설치 `install.ps1` (링크 → 안 되면 복사, `-Uninstall`), README "Windows" 절
 - `harness-setup` — 에이전트 복사본(Windows 복사 설치면 스킬 · shared 도)이 저장소와 같은지 비교

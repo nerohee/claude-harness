@@ -32,7 +32,7 @@ if [ ! -f "$REPO/config.local.json" ]; then
   cp "$REPO/config.example.json" "$REPO/config.local.json"
   echo "  설정 파일을 만들었습니다: $REPO/config.local.json — /harness-setup 으로 채우세요"
 fi
-echo "완료. 스킬: /web-full · /web-lite · /harness-setup"
+echo "완료. 스킬: /web-full · /web-lite · /desktop-app · /harness-setup"
 if [ "$new_agents_dir" = 1 ]; then
   echo "※ 에이전트 폴더를 새로 만들었습니다. 열려 있는 Claude Code 를 다시 시작해야 작업자 에이전트가 보입니다."
 fi
