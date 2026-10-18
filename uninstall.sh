@@ -1,19 +1,5 @@
 #!/usr/bin/env bash
-# claude-harness 제거 — install.sh 가 만든 링크와 복사한 에이전트만 지운다. 저장소와 프로젝트 문서는 그대로.
-set -euo pipefail
-REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CLAUDE_DIR="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
-RETIRED="harness-builder harness-builder-deep"
-for d in "$REPO"/skills/*/; do
-  t="$CLAUDE_DIR/skills/$(basename "$d")"
-  [ -L "$t" ] && rm "$t" && echo "  지움: $t"
-done
-for f in "$REPO"/agents/*.md; do
-  t="$CLAUDE_DIR/agents/$(basename "$f")"
-  [ -f "$t" ] && rm "$t" && echo "  지움: $t"
-done
-for f in $RETIRED; do
-  t="$CLAUDE_DIR/agents/$f.md"; [ -f "$t" ] && rm "$t" && echo "  지움: $t"
-done
-[ -L "$CLAUDE_DIR/harness" ] && rm "$CLAUDE_DIR/harness" && echo "  지움: $CLAUDE_DIR/harness"
-echo "완료."
+# claude-harness 제거 — install.sh 가 만든 링크 · 복사본 · 복사한 에이전트만 지운다 (내 수정으로 만든 에이전트 · 스킬 포함).
+# 저장소 · 내 수정 폴더 · 프로젝트 문서는 그대로. 지우기 전에 백업을 남긴다 (되돌리기: bash install.sh --restore <번호>).
+#   bash uninstall.sh [--plan] [--json]     (install.sh --uninstall 과 같다)
+exec bash "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/install.sh" --uninstall "$@"

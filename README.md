@@ -78,7 +78,36 @@ Linux · WSL · macOS 모두 같은 명령입니다 (macOS 기본 bash 로 됩�
 
 - 세션 모델은 **Opus · 추론 high** 로 두고 쓰세요 (`/model`). 스킬이 시작할 때 확인합니다.
 - `~/.claude/agents` 폴더가 처음 생겼다면 Claude Code 를 다시 시작해야 작업자가 보입니다.
-- 지우기: `bash uninstall.sh` (링크와 복사한 에이전트만 지웁니다)
+- 지우기: `bash uninstall.sh` (하네스가 만든 링크 · 복사본 · 복사한 에이전트만 지웁니다 — 지우기 전에 백업을 남깁니다)
+
+### 옵션 · 미리보기 · 백업
+
+`install.sh` 는 덮어쓰거나 지우기 전에 `~/.claude-harness/backups/<날짜시각>/` 에 그 파일들과 목록(manifest)을 남깁니다. 하네스와 상관없는 `~/.claude` 파일(설정 · 기록 · 인증 · 플러그인 등)은 읽지도 백업하지도 않습니다.
+
+| 명령 | 하는 일 |
+|---|---|
+| `bash install.sh --plan` | 설치하지 않고 계획만 — 새로 생김 · 바뀜 · 지워짐 · 건너뜀(하네스가 만들지 않은 것이 있음) · 원본 바뀜. 아무것도 쓰지 않습니다 |
+| `bash install.sh --check` | 설치된 작업자가 저장소(+ 내 수정)와 같은지만 봅니다 (다르면 종료 코드 1) |
+| `bash install.sh --backups` | 백업 목록 |
+| `bash install.sh --restore <번호>` | 고른 백업으로 되돌립니다 (설치가 새로 만든 것은 지우고, 덮어쓴 것은 돌려놓습니다). `--plan` 을 붙이면 미리보기 |
+| `bash install.sh --uninstall` | `uninstall.sh` 와 같습니다 (`--plan` 으로 미리보기, 되돌릴 수 있음) |
+| `--json` | 사람용 출력 대신 JSON 한 줄 — 앱이 읽습니다 (모양 · 종료 코드: [shared/app-contract.md](shared/app-contract.md)) |
+
+위치는 환경 변수로 바꿉니다: `CLAUDE_CONFIG_DIR`(기본 `~/.claude`), `CLAUDE_HARNESS_HOME`(기본 `~/.claude-harness` — `repo/` 원본 · `custom/` 내 수정 · `backups/`). 이미 `~/.claude/harness` 가 다른 저장소를 가리키고 있으면 출력에 "개발자 모드" 로 표시합니다 (그 저장소가 원본).
+
+### 내 수정 (`~/.claude-harness/custom/`)
+
+원본(이 저장소)은 고치지 않고, 바꾸고 싶은 것을 `custom/` 에 둡니다. 설치가 원본 위에 겹쳐서 `~/.claude` 에 만듭니다 — 내 수정이 하나라도 있으면 **원본 + 내 수정을 합친 복사**로, 없으면 지금처럼 링크로 설치합니다.
+
+| 하고 싶은 것 | 어떻게 |
+|---|---|
+| 모델 · 수준만 바꾸기 | `custom/agents/harness-builder-ui.values.yml` — `effort: high` 처럼 한 줄씩 |
+| 지시를 덧붙이기 | `custom/agents/harness-builder-ui.append.md` — 원본 끝에 붙습니다 |
+| 새 에이전트 · 스킬 | `custom/agents/<이름>.md`, `custom/skills/<이름>/SKILL.md` |
+| 파일 통째로 바꾸기 | 같은 경로에 파일 + `<파일>.origin` (만들 때의 원본 해시 — `install.sh --origin-hash <경로>`). 원본이 바뀌면 "원본 바뀜" 으로 알립니다 |
+| 하네스 설정 | `custom/config.local.json` (복사 설치는 이것을 `~/.claude/harness/config.local.json` 으로 넣습니다) |
+
+자세한 모양과 규칙은 [shared/app-contract.md](shared/app-contract.md). 내 수정 폴더에 읽을 수 없는 것이 있으면 아무것도 쓰지 않고 멈춥니다.
 
 ### Windows (Claude 데스크톱 앱 · 네이티브 Claude Code)
 
@@ -93,6 +122,8 @@ powershell -ExecutionPolicy Bypass -File \\wsl.localhost\Ubuntu-24.04\home\<사�
 - 작업자 가드 hook 은 bash 로 돌아서 Git Bash 가 있어야 합니다.
 - Windows 용 데스크톱 앱(`/desktop-app`)은 Windows 쪽에서 만드는 것을 권장합니다 — WSL 에서는 화면이 실제와 다르게 보이고 Windows 설치본을 만들 수 없습니다 (`shared/desktop/stack.md`).
 - 지우기: 같은 명령 끝에 `-Uninstall`
+- 옵션은 `install.sh` 와 같은 이름입니다 (`--plan` ↔ `-Plan`, `--check` ↔ `-Check`, `--backups` ↔ `-Backups`, `--restore <번호>` ↔ `-Restore <번호>`, `--json` ↔ `-Json`, `--origin-hash` ↔ `-OriginHash`). 내 수정 · 백업 · JSON 도 같습니다.
+- 내 수정이 있으면 링크가 되는 PC 에서도 복사로 설치합니다 (원본 + 내 수정을 합친 것).
 
 ## 구조
 
@@ -109,6 +140,9 @@ shared/
   knowledge-capture.md 개념 노트 (web-full · desktop-app)
   desktop/             데스크톱 앱 — 질문 · 기술(Tauri 2) · 디자인 · 시험
   templates/           docs 문서 틀
+  app-contract.md      앱(Nyanitor)과의 약속 — 설치 스크립트 옵션 · JSON, custom/ 모양, 앞머리 · 프로젝트 문서 형식
+install.sh · install.ps1 · uninstall.sh   설치 · 미리보기 · 백업 · 되돌리기 · 지우기
+tests/             설치 스크립트 시험 — bash tests/install.test.sh · powershell -File tests\install.test.ps1 (임시 폴더에서만 돈다)
 config.example.json  개인 설정 예시
 ```
 

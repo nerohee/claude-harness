@@ -1,5 +1,13 @@
 # 변경 기록
 
+## 2026-10-18
+- 하네스 폴더 `~/.claude-harness/{repo,custom,backups}` (`CLAUDE_HARNESS_HOME` 으로 위치 변경) — 설치 스크립트가 `custom/`(내 수정)을 원본 위에 겹쳐 설치: 값만 바꾸기(`*.values.yml`) · 끝에 덧붙이기(`*.append.md`) · 새 에이전트 · 스킬 · 파일 통째 바꾸기(`.origin` 에 만들 때의 원본 해시 → 원본이 바뀌면 "원본 바뀜"). 내 수정이 있으면 원본 + 내 수정을 합친 **복사**, 없으면 지금처럼 링크. `config.local.json` 도 `custom/` 으로 (복사 설치가 스킬이 읽는 `~/.claude/harness/config.local.json` 으로 넣는다). 이미 다른 원본을 가리키면 "개발자 모드" 로 표시
+- `install.sh` · `install.ps1` 옵션 — `--plan`(미리보기: 새로 생김 · 바뀜 · 지워짐 · 건너뜀 · 원본 바뀜, 아무것도 쓰지 않음) · `--backups` · `--restore <번호>` · `--uninstall` · `--origin-hash <경로>` · `--json`(앱이 읽는 JSON 한 줄, 두 스크립트가 같은 모양). 사람용 출력과 `--check` 는 그대로
+- 백업 · 되돌리기 — 덮어쓰거나 지우기 전에 `backups/<날짜시각>/` 에 파일 + 목록(manifest). 하네스가 다루는 경로(`harness` · 하네스 스킬 · 에이전트)만 읽고 백업하고, 설정 · 기록 · 인증은 읽지 않는다. 되돌리면 새로 만든 것은 지우고 덮어쓴 것은 돌려놓는다. 쓰는 중 실패하면 스스로 되돌리고(`rolledBack`) 종료 코드 3. 같은 `~/.claude` 에 설치가 동시에 돌지 못하게 잠금. `uninstall.sh` · `install.ps1 -Uninstall` 도 같은 길(백업 후 지움, 되돌릴 수 있음)
+- `shared/app-contract.md` — 앱(Nyanitor)과의 약속 문서(버전 1): 설치 스크립트 옵션 · JSON · 종료 코드, `custom/` 모양, 에이전트 · 스킬 앞머리 필드, `dev-plan.md` 단계 표 · `handoff.md` 상태 줄 읽는 법, 질문은 AskUserQuestion, 단계 승인 카드 4항목(무엇을 · 왜 지금 · 산출물 · 하지 않는 것) 출력 모양(초안). workflow §2 에 승인 질문 모양 한 줄
+- 작업자 공통 규칙 — 문서를 PowerShell `Set-Content` · `Out-File` · `Get-Content -Raw` 로 고치지 않기(한글 깨짐), 띄운 개발 서버는 끄고 끝내기, 파일은 LF 로(Windows 파이썬 `newline='\n'`)
+- 시험 `tests/install.test.sh` · `tests/install.test.ps1` (임시 폴더에서만 동작, 예전 설치 스크립트와 같은 결과인지 · 내 수정 · 미리보기 = 설치 · 백업 → 되돌리기 · 실패 시 되돌림 · `install.sh` 와 `install.ps1` 의 JSON · 설치 결과가 같은지)
+
 ## 2026-10-14
 - 커밋 메시지 형식 — 지금까지 써 온 한 줄 `<종류>: <한국어 요약>` (workflow §5). 제안은 `git add` · `git commit -m` 을 따로 된 블록으로, `-C` · `cd` · `&&` 없이, 확인할 게 있을 때만 `git status --short` 와 볼 것 한 줄
 - 묻는 형식 — 모든 질문을 선택지 A · B · C … + 기타, 권장안을 A 에, 선택형 질문 도구 우선, 한 묶음 4개까지 (workflow §2)
