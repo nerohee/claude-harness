@@ -75,7 +75,7 @@ bash ~/project/claude-harness/install.sh
 
 Linux · WSL · macOS 모두 같은 명령입니다 (macOS 기본 bash 로 됩니다).
 
-그다음 Claude Code 에서 `/harness-setup` 으로 개인 설정(대답 언어, Vault 경로 등)을 만듭니다. 설정은 `config.local.json` 에 저장되고 git 에 올라가지 않습니다.
+그다음 Claude Code 에서 `/harness-setup` 으로 개인 설정(대답 언어, Vault 경로 등)을 만듭니다. 설정은 `config.local.json` 에 저장되고 git 에 올라가지 않습니다 (복사 설치 — 앱이 받은 원본 등 — 는 `~/.claude-harness/custom/config.local.json` 에 저장하고 설치를 다시 돌립니다. 앱이 받은 원본 `repo/` 는 `/harness-setup` 도 고치지 않고 `custom/` 으로 바꿉니다).
 
 - 세션 모델은 **Opus · 추론 high** 로 두고 쓰세요 (`/model`). 스킬이 시작할 때 확인합니다.
 - `~/.claude/agents` 폴더가 처음 생겼다면 Claude Code 를 다시 시작해야 작업자가 보입니다.
