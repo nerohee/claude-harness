@@ -65,7 +65,7 @@ eq "첫 설치 종료 코드가 같다" "$NEWRC" "$OLDRC"
 eq "첫 설치 출력이 같다 (개발자 모드 한 줄만 더 있음)" "$(printf '%s\n' "$OUT" | grep -v '개발자 모드 —' | norm_out)" "$(norm_out < "$BOX/old1.out")"
 yes_ "에이전트 파일이 바이트까지 같다" diff -r "$OLD/agents" "$NEW/agents"
 eq "하네스는 저장소로 가는 링크" "$(readlink "$NEW/harness")" "$BOX/repo"
-for s in web-full web-lite desktop-app harness-resume harness-setup; do
+for s in web-full web-lite desktop-app thread-draft harness-resume harness-setup; do
   eq "스킬 링크 $s" "$(readlink "$NEW/skills/$s")" "$BOX/repo/skills/$s"
 done
 eq "링크 모양이 예전과 같다" "$(snap "$NEW" | grep '^L' | norm_out)" "$(snap "$OLD" | grep '^L' | norm_out)"
@@ -372,7 +372,7 @@ mkdir -p "$CL/skills/my-own"; echo "내 스킬" > "$CL/skills/my-own/SKILL.md"; 
 snap "$CL" > "$BOX/before.snap"
 bash "$BOX/repo/uninstall.sh" --help >/dev/null 2>&1
 CLAUDE_CONFIG_DIR="$CL" CLAUDE_HARNESS_HOME="$HH" bash "$BOX/repo/uninstall.sh" --plan --json > "$BOX/un.plan"; OUT="$(cat "$BOX/un.plan")"
-eq "지우기 미리보기 — 지울 것" "$(J "sorted(c['path'] for c in d['changes'] if c['action']=='remove')")" "['agents/harness-builder-system.md', 'agents/harness-builder-ui.md', 'agents/harness-designer.md', 'agents/harness-helper.md', 'agents/harness-reviewer.md', 'agents/harness-tester.md', 'harness', 'skills/desktop-app', 'skills/harness-resume', 'skills/harness-setup', 'skills/web-full', 'skills/web-lite']"
+eq "지우기 미리보기 — 지울 것" "$(J "sorted(c['path'] for c in d['changes'] if c['action']=='remove')")" "['agents/harness-builder-system.md', 'agents/harness-builder-ui.md', 'agents/harness-designer.md', 'agents/harness-helper.md', 'agents/harness-reviewer.md', 'agents/harness-tester.md', 'harness', 'skills/desktop-app', 'skills/harness-resume', 'skills/harness-setup', 'skills/thread-draft', 'skills/web-full', 'skills/web-lite']"
 snap "$CL" > "$BOX/mid.snap"; eq "미리보기는 아무것도 지우지 않는다" "$(diff "$BOX/before.snap" "$BOX/mid.snap" | wc -l | tr -d ' ')" "0"
 OUT="$(CLAUDE_CONFIG_DIR="$CL" CLAUDE_HARNESS_HOME="$HH" bash "$BOX/repo/uninstall.sh" 2>&1)"; RC=$?
 eq "지우기 성공" "$RC" "0"
