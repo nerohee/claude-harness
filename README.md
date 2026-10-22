@@ -12,6 +12,7 @@
 | `/web-full [요구사항.md]` | 제대로 된 웹사이트 | 개발 + 디자인, 깊게 | 남김 |
 | `/web-lite [요구사항.md]` | 핵심 기능 하나 · 랜딩 페이지 | 꼭 필요한 것만 | 남기지 않음 |
 | `/desktop-app [요구사항.md]` | 데스크톱 앱 (Tauri 2) — 규모는 요구사항에 맞춰 | 요구사항에 맞게 | 남김 |
+| `/thread-draft [날짜]` | 작업 일지로 스레드 글 초안 — 내 말투 · 이미지 추천 · 공개 전 거르기 (게시는 직접) | 이야깃거리 고르기 | - |
 | `/harness-resume [프로젝트 폴더]` | 끊긴 작업 이어 하기 (토큰 · 사용량 한도, 새 세션) | - | - |
 | `/harness-setup [바꿀 것]` | 하네스 자체 설정 · 수정 | 원하는 변경 | - |
 
@@ -128,7 +129,7 @@ powershell -ExecutionPolicy Bypass -File \\wsl.localhost\Ubuntu-24.04\home\<사�
 ## 구조
 
 ```
-skills/            web-full · web-lite · desktop-app · harness-resume · harness-setup
+skills/            web-full · web-lite · desktop-app · thread-draft · harness-resume · harness-setup
 agents/            작업자 정의 — install.sh · install.ps1 이 공통 규칙과 합쳐 ~/.claude/agents 로 복사
   _common/           rules.md (공통 규칙) · hooks.yml (가드 hook) · template.md (새 작업자 틀)
 hooks/             builder-guard.sh — 작업자 가드 (git · 배포 · 서명 · .env)
@@ -139,6 +140,7 @@ shared/
   delegation.md        작업자 표 · 담당 정하기 · 작업 지시서 · 검수
   knowledge-capture.md 개념 노트 (web-full · desktop-app)
   desktop/             데스크톱 앱 — 질문 · 기술(Tauri 2) · 디자인 · 시험
+  threads/             스레드 글 — 글쓰기 · 공개 전 거르기 · 이미지 고르기 · 말투 틀
   templates/           docs 문서 틀
   app-contract.md      앱(Nyanitor)과의 약속 — 설치 스크립트 옵션 · JSON, custom/ 모양, 앞머리 · 프로젝트 문서 형식
 install.sh · install.ps1 · uninstall.sh   설치 · 미리보기 · 백업 · 되돌리기 · 지우기

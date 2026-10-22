@@ -1009,7 +1009,7 @@ cmd_install() {
       say "  설정 파일을 만들었습니다: $REPO/config.local.json — /harness-setup 으로 채우세요"
     fi
   fi
-  say "완료. 스킬: /web-full · /web-lite · /desktop-app · /harness-resume · /harness-setup"
+  say "완료. 스킬: /web-full · /web-lite · /desktop-app · /thread-draft · /harness-resume · /harness-setup"
   if [ "$RESTART" = true ]; then
     say "※ 에이전트 폴더를 새로 만들었습니다. 열려 있는 Claude Code 를 다시 시작해야 작업자 에이전트가 보입니다."
   fi

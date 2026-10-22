@@ -1,5 +1,8 @@
 # 변경 기록
 
+## 2026-10-22
+- 새 스킬 `/thread-draft` — 작업 일지로 스레드 글 초안 2~3안 · 이미지 1~n장(PNG 로 모음) · 공개 전 거르기, 게시는 사용자. `shared/threads/`(writing · filter · images · voice.example), 틀 `thread-draft.md` · `threads-account.md`, 설정 `threads.dir` (말투 `voice.md` 는 계정 폴더에, 저장소 밖)
+
 ## 2026-10-18
 - 하네스 폴더 `~/.claude-harness/{repo,custom,backups}` (`CLAUDE_HARNESS_HOME` 으로 위치 변경) — 설치 스크립트가 `custom/`(내 수정)을 원본 위에 겹쳐 설치: 값만 바꾸기(`*.values.yml`) · 끝에 덧붙이기(`*.append.md`) · 새 에이전트 · 스킬 · 파일 통째 바꾸기(`.origin` 에 만들 때의 원본 해시 → 원본이 바뀌면 "원본 바뀜"). 내 수정이 있으면 원본 + 내 수정을 합친 **복사**, 없으면 지금처럼 링크. `config.local.json` 도 `custom/` 으로 (복사 설치가 스킬이 읽는 `~/.claude/harness/config.local.json` 으로 넣는다). 이미 다른 원본을 가리키면 "개발자 모드" 로 표시
 - `install.sh` · `install.ps1` 옵션 — `--plan`(미리보기: 새로 생김 · 바뀜 · 지워짐 · 건너뜀 · 원본 바뀜, 아무것도 쓰지 않음) · `--backups` · `--restore <번호>` · `--uninstall` · `--origin-hash <경로>` · `--json`(앱이 읽는 JSON 한 줄, 두 스크립트가 같은 모양). 사람용 출력과 `--check` 는 그대로

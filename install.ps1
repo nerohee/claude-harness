@@ -1196,7 +1196,7 @@ function Invoke-CmdInstall {
       Write-Say "  설정 파일을 만들었습니다: $cfg — /harness-setup 으로 채우세요"
     } catch { }
   }
-  Write-Say '완료. 스킬: /web-full · /web-lite · /desktop-app · /harness-resume · /harness-setup'
+  Write-Say '완료. 스킬: /web-full · /web-lite · /desktop-app · /thread-draft · /harness-resume · /harness-setup'
   if ($script:Mode -eq 'copy' -and -not (Test-CanLink) -and $script:Items.Count -eq 0) { Write-Say '※ 복사로 설치했습니다. 저장소를 고친 뒤에는 이 스크립트를 다시 돌리세요. (개발자 모드를 켜면 링크로 설치됩니다)' }
   if ($script:Restart) { Write-Say '※ 에이전트 폴더를 새로 만들었습니다. 열려 있는 Claude Code 를 다시 시작해야 작업자 에이전트가 보입니다.' }
   Write-Say '※ 작업자 가드 hook 은 bash 로 돕니다 — Windows 에서는 Git Bash 가 있어야 합니다.'

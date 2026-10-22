@@ -17,5 +17,8 @@
     "tester": "harness-tester",
     "helper": "harness-helper",
     "reviewer": "harness-reviewer"
+  },
+  "threads": {
+    "dir": ""
   }
 }

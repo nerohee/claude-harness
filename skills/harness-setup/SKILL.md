@@ -15,7 +15,7 @@ effort: high
 
 1. `~/.claude/harness` 가 가리키는 실제 저장소 위치를 확인한다 (`readlink -f ~/.claude/harness` — macOS 12.3 보다 오래돼 안 되면 `cd ~/.claude/harness && pwd -P`). 이하 "저장소".
 2. 저장소의 `README.md`, `CHANGELOG.md`, `config.example.json`, `config.local.json`(있으면) 을 읽는다.
-3. 설치 상태를 확인한다 — `~/.claude/skills/{web-full,web-lite,desktop-app,harness-resume,harness-setup}` 링크, `~/.claude/agents/harness-*.md` (designer · builder-ui · builder-system · tester · helper · reviewer).
+3. 설치 상태를 확인한다 — `~/.claude/skills/{web-full,web-lite,desktop-app,thread-draft,harness-resume,harness-setup}` 링크, `~/.claude/agents/harness-*.md` (designer · builder-ui · builder-system · tester · helper · reviewer).
    - **설치된 작업자가 저장소와 같은지 비교한다** — 작업자는 공통 규칙과 합쳐 복사하는 방식이라 저장소만 고치면 예전 것이 계속 쓰인다.
      ```bash
      bash <저장소>/install.sh --check      # Windows: install.ps1 -Check
@@ -34,6 +34,7 @@ effort: high
 | `vault.rawImportDir` | Vault 안 Raw Import 폴더 | `00 Inbox/Raw Import/Personal Study` |
 | `docsDir` | 프로젝트 문서 폴더 | `docs` |
 | `commitPolicy` | `propose-only`(커밋은 내가) / `agent-commits`(푸시만 내가) | `propose-only` |
+| `threads.dir` | 스레드 글 초안을 모을 계정 폴더 (`/thread-draft`). 안 쓰면 비워 둔다 | 비움 |
 
 답을 받아 `config.local.json` 을 쓴다. 이 파일은 git 에 올라가지 않는다(개인 경로라서). Vault 경로를 받았으면 그 폴더가 실제로 있는지 확인한다.
 
@@ -50,6 +51,7 @@ effort: high
    | 맡기기 · 검수 방식 | `shared/delegation.md` |
    | 개념 노트 | `shared/knowledge-capture.md` |
    | 데스크톱 앱 — 질문 · 기술(Tauri) · 디자인 · 시험 | `shared/desktop/*.md` |
+   | 스레드 글 초안 — 글쓰기 · 거르기 · 이미지 | `shared/threads/*.md`, `skills/thread-draft/SKILL.md` · 계정 폴더는 `config` 의 `threads.dir` (말투 `voice.md` 는 계정 폴더에 — 저장소에 두지 않는다) |
    | 문서 틀 | `shared/templates/*.md` |
    | 스킬별 단계 | `skills/<이름>/SKILL.md` |
    | 작업자 — 성격 · 모델 · 맡는 일 · 공통 규칙 · 추가 · 빼기 | **C 절** |
