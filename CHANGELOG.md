@@ -2,6 +2,7 @@
 
 ## 2026-10-22
 - 새 스킬 `/thread-draft` — 작업 일지로 스레드 글 초안 2~3안 · 이미지 1~n장(PNG 로 모음) · 공개 전 거르기, 게시는 사용자. `shared/threads/`(writing · filter · images · voice.example), 틀 `thread-draft.md` · `threads-account.md`, 설정 `threads.dir` (말투 `voice.md` 는 계정 폴더에, 저장소 밖)
+- `/thread-draft` 묶음 글 — `소개` · `지금까지` · 기간을 받으면 여러 날 일지 · 기획을 훑어 소개 글, 또는 따로 쓸 이야기 목록(프로젝트 README "쓸 이야기") + 그중 하나를 초안으로
 
 ## 2026-10-18
 - 하네스 폴더 `~/.claude-harness/{repo,custom,backups}` (`CLAUDE_HARNESS_HOME` 으로 위치 변경) — 설치 스크립트가 `custom/`(내 수정)을 원본 위에 겹쳐 설치: 값만 바꾸기(`*.values.yml`) · 끝에 덧붙이기(`*.append.md`) · 새 에이전트 · 스킬 · 파일 통째 바꾸기(`.origin` 에 만들 때의 원본 해시 → 원본이 바뀌면 "원본 바뀜"). 내 수정이 있으면 원본 + 내 수정을 합친 **복사**, 없으면 지금처럼 링크. `config.local.json` 도 `custom/` 으로 (복사 설치가 스킬이 읽는 `~/.claude/harness/config.local.json` 으로 넣는다). 이미 다른 원본을 가리키면 "개발자 모드" 로 표시
