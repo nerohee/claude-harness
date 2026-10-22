@@ -2,6 +2,7 @@
 
 ## 2026-10-22
 - `/harness-setup` 이 세 설치 상태를 가른다 — ① 링크(원본 = 링크 대상) · ② 복사 설치 + 개발자 클론(원본 = `.install-mode` 둘째 줄) · ③ 앱이 받은 원본(`<하네스 폴더>/repo`). 설정은 복사 설치에서 `custom/config.local.json`(②는 `custom/` 에 읽는 항목이 없으면 원본의 파일) 에 쓰고 설치를 다시 돌린다. ③ 은 `repo/` 를 고치지 않고 `custom/` 으로 (값 · 덧붙이기 · 새 에이전트 · 스킬 · 통째 바꾸기). 비교는 `--check` + `--plan`
+- 시험 기준에 `thread-draft` 반영 (sh · ps1 시험 목록 · 예전 설치 흉내 파일) · `.gitattributes` 로 줄바꿈 LF 고정 · 약속 문서에 원본 찾기 규칙 · 링크 → 복사 전환 보충
 - 새 스킬 `/thread-draft` — 작업 일지로 스레드 글 초안 2~3안 · 이미지 1~n장(PNG 로 모음) · 공개 전 거르기, 게시는 사용자. `shared/threads/`(writing · filter · images · voice.example), 틀 `thread-draft.md` · `threads-account.md`, 설정 `threads.dir` (말투 `voice.md` 는 계정 폴더에, 저장소 밖)
 - `/thread-draft` 묶음 글 — `소개` · `지금까지` · 기간을 받으면 여러 날 일지 · 기획을 훑어 소개 글, 또는 따로 쓸 이야기 목록(프로젝트 README "쓸 이야기") + 그중 하나를 초안으로
 - `/thread-draft` 주제 태그 · 커뮤니티 — 초안마다 태그 1개(계정 README "자주 쓰는 태그" 에서) · 맞는 글만 커뮤니티 추천, 글 목록에 남겨 반응과 비교

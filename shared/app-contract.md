@@ -106,6 +106,8 @@
 - **개발자 모드**: 이미 `~/.claude/harness` 가 다른 원본 저장소를 가리키면(`existingSource` 가 `<하네스 폴더>/repo` 가 아님) 앱은 클론하지 않고 **그 원본의 `install.*`** 를 돌린다. 스크립트는 이를 `developerMode` 로 알린다.
 - 하네스 설정 `config.local.json`: 스킬은 `~/.claude/harness/config.local.json` 을 읽는다. 링크 설치는 원본 폴더의 파일(예전 그대로, 없으면 예전처럼 예시에서 만들어 준다 — 개발자 모드일 때만), **복사 설치는 `custom/config.local.json` → 원본의 `config.local.json` → 지금 설치본에 있는 것 순으로** 복사본에 넣는다 (셋 다 없고 내 수정도 없는 개발자 모드의 복사 설치는 마지막으로 `config.example.json`). 앱이 받은 원본(`<하네스 폴더>/repo`)에는 설정 파일을 만들지 않는다 — 설정이 없으면 스킬이 예시 기본값으로 돌고 `/harness-setup` 을 권한다. 설정을 바꾸는 쪽(앱 · `/harness-setup`)은 복사 설치에서 `custom/config.local.json` 을 고치고 다시 설치해야 한다 (설치본만 고치면 `configOnlyInInstall` 알림, 다음 설치까지 그대로 두지만 `custom/` 에는 없다).
 - 작업자 가드 hook(`hooks/builder-guard.sh`)은 bash 로 돈다 — **Windows 는 Git Bash 가 있어야 한다** (앱의 git 확인과 이어진다). 설치 스크립트는 막지 않고 한 줄 안내만 한다.
+- **원본 찾기** — `<설정 폴더>/harness` 가 링크면 링크 대상, 링크가 아니고 `.install-mode` 첫 줄이 `copy` 면 둘째 줄. 그 원본이 `<하네스 폴더>/repo` 와 같으면 앱이 받은 원본, 아니면 개발자 원본(`developerMode`). 앱 · `/harness-setup` 이 이 규칙으로 판별한다.
+- 링크 설치 상태에서 `custom/` 에 읽는 항목(`config.local.json` 포함)이 처음 생기면 다음 설치가 **복사 설치로 바뀐다** (`--plan` 에 `harness` 가 지워지고 파일로 생김이 보인다).
 
 ### 2-5. 앱이 업데이트를 받는 흐름 (권장)
 
@@ -273,3 +275,4 @@ backups/2026-10-18_143205/
 ## 8. 바꾼 기록
 
 - **1** (2026-10-18) — 처음. 설치 스크립트 옵션 · JSON · 종료 코드, `custom/` 모양, 백업, 앞머리 필드, 단계 표 · 이어 하기 메모 읽는 법, 질문 · 승인 카드 초안.
+- **1** (2026-10-22 보충) — 원본 찾기 규칙 · 링크 → 복사 전환을 명시. 형식 변화 없음.
